@@ -5,9 +5,28 @@ Note: If there are multiple students with the second lowest grade, order their n
 '''
 
 if __name__ == '__main__':
-    student_list = []
+    student_score = {}
     for _ in range(int(input())):
         name = input()
         score = float(input())
-        
-        student_list.append([name, score])
+        student_score[name] = score
+    
+    second_min = 0
+    arr = list(student_score.values())
+    
+    arr.sort()
+    if len(arr)==1:
+        second_min = arr[0] 
+    first_min = arr[0]
+    for i in arr:
+        if first_min < i:
+            second_min = i
+            break
+    
+    result = []
+    for key in student_score.keys():
+        if student_score[key] == second_min:
+            result.append(key)
+    result.sort()
+    for val in result:
+        print(val) 
